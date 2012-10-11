@@ -1,3 +1,4 @@
+-# encoding: utf-8
 !!! XML
 !!!
 %html
@@ -18,12 +19,12 @@
 
     %form{:action => url("/convert", false, true), :method => "post"}
       %p
-        %select
-          - ['UTF-8', 'Shift_JIS', 'EUC-JP'].each do |i|
-            %option{:name => "charset", :value => i}= i
-        %select
+        %select{:name => "charset"}
+          - ['UTF-8', 'Shift_JIS', 'EUC-JP'].each do |v|
+            %option{:value => v}= v
+        %select{:name => "way"}
           - ['char -> byte', 'byte -> char'].each_with_index do |v, i|
-            %option{:name => "way", :value => i}= v
+            %option{:value => i}= v
       %p
         %input{:type => "textarea", :name => "before", :value => "#{@after}", :size => 40}
       %p

@@ -8,8 +8,18 @@ get "/" do
 end
 
 post "/convert" do
-  @after = convert(params)
-  haml :index
+  begin
+    @after = convert(params)
+    haml :index
+  rescue
+    ["だめです？",
+     "おちるです？",
+     "しんじゃうです？",
+     "ふせいです？",
+     "へんです？",
+     "おかしいです？",
+     "さよならです？"].sample
+  end
 end
 
 get "/convert/:before" do |before|
@@ -18,13 +28,21 @@ end
 
 private
 def convert(params)
-  charset = params['charset']
-  way = params['way']
-  before = params['before']
-  to_b(before)
+  if params[:way] == "0"
+    c2b(params[:before], params[:charset])
+  else
+    b2c(params[:before], params[:charset])
+  end
 end
 
-def to_b(s)
-  s.bytes.collect {|b| b.to_s(16) }.join
+def c2b(c, charset="UTF-8")
+  c.encode(charset).bytes.map {|b| b.to_s(16) }.join
 end
 
+def b2c(b, charset="UTF-8")
+  if charset == "UTF-8"
+    [b].pack("H*").force_encoding(charset)
+  else
+    Encoding::Converter.new(charset, "UTF-8").convert([b].pack("H*"))
+  end
+end
