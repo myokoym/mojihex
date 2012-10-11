@@ -1,0 +1,30 @@
+!!! XML
+!!!
+%html
+  %head
+    %meta{'http-equiv' => 'content-type', :content => 'text/html; charset=utf-8'}
+    %meta{'http-equiv' => 'content-style-type', :content => 'text/css'}
+    %meta{'http-equiv' => 'content-script-type', :content => 'text/javascript'}
+    %title 昆布茶 - Charset Converter
+  %body
+    %h1 昆布茶
+
+    Powered by
+    %a{:href => "http://www.ruby-lang.org/ja/"} Ruby
+    ,
+    %a{:href => "http://www.sinatrarb.com/intro-jp.html"} Sinatra
+    ,
+    %a{:href => "http://haml-lang.com/"} Haml
+
+    %form{:action => url("/convert", false, true), :method => "post"}
+      %p
+        %select
+          - ['UTF-8', 'Shift_JIS', 'EUC-JP'].each do |i|
+            %option{:name => "charset", :value => i}= i
+        %select
+          - ['char -> byte', 'byte -> char'].each_with_index do |v, i|
+            %option{:name => "way", :value => i}= v
+      %p
+        %input{:type => "textarea", :name => "before", :value => "#{@after}", :size => 40}
+      %p
+        %input{:type => "submit"}
