@@ -36,12 +36,16 @@ def convert(params)
 end
 
 def c2b(c, charset="UTF-8")
-  c.encode(charset).bytes.map {|b| b.to_s(16) }.join
+  c.split(//).map {|char|
+    char.encode(charset).bytes.map {|b|
+      b.to_s(16)
+    }.join
+  }.join(' ')
 end
 
 def b2c(b, charset="UTF-8")
   if charset == "UTF-8"
-    [b].pack("H*").force_encoding(charset)
+    [b.gsub(/\s+/, '')].pack("H*").force_encoding(charset)
   else
     Encoding::Converter.new(charset, "UTF-8").convert([b].pack("H*"))
   end
