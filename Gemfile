@@ -4,6 +4,6 @@ gem 'sinatra'
 gem 'haml'
 
 group :development, :test do
-  gem 'test-unit'
+  gem 'rspec'
   gem 'rack-test'
 end
