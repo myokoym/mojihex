@@ -49,8 +49,12 @@ end
 
 def hex2str(hex, charset="UTF-8")
   if charset == "UTF-8"
-    [hex.gsub(/\s+/, '')].pack("H*").force_encoding(charset)
+    hex2bytes(hex).force_encoding(charset)
   else
-    Encoding::Converter.new(charset, "UTF-8").convert([hex].pack("H*"))
+    Encoding::Converter.new(charset, "UTF-8").convert(hex2bytes(hex))
   end
+end
+
+def hex2bytes(hex)
+  [hex.gsub(/\s+/, '')].pack("H*")
 end
