@@ -91,5 +91,27 @@ describe "Convchar" do
       end
     end
   end
+
+  context "api" do
+    context "char to hex bytes" do
+      it "encoding UTF-8" do
+        get '/convert', {"before" => "あ",
+                          "charset" => "UTF-8",
+                          "way" => "0"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /\Ae38182\z/
+      end
+    end
+
+    context "hex bytes to char" do
+      it "encoding UTF-8" do
+        get '/convert', {"before" => "e38182",
+                          "charset" => "UTF-8",
+                          "way" => "1"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /\Aあ\z/
+      end
+    end
+  end
 end
 

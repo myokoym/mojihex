@@ -22,8 +22,8 @@ post "/convert" do
   end
 end
 
-get "/convert/:before" do |before|
-  convert(before)
+get "/convert" do
+  convert(params)
 end
 
 private
