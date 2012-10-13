@@ -13,5 +13,10 @@ describe "Convchar" do
     get '/'
     last_response.ok? == true
   end
+
+  it "test_post" do
+    post '/convert'
+    last_response.ok? == true
+  end
 end
 
