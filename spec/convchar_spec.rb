@@ -29,7 +29,7 @@ describe "Convchar" do
                           "charset" => "UTF-8",
                           "way" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /e38182/
+        last_response.body.to_s.should =~ /value='e38182'/
       end
     end
   end
