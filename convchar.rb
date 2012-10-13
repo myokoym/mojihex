@@ -37,10 +37,14 @@ end
 
 def str2hex(str, charset="UTF-8")
   str.split(//).map {|char|
-    char.encode(charset).bytes.map {|byte|
-      byte.to_s(16)
-    }.join
+    char2hex(char, charset)
   }.join(' ')
+end
+
+def char2hex(char, charset)
+  char.encode(charset).bytes.map {|byte|
+    byte.to_s(16)
+  }.join
 end
 
 def hex2str(hex, charset="UTF-8")
