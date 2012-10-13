@@ -55,6 +55,14 @@ describe "Convchar" do
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='a4a2'/
       end
+
+      it "encoding CP930" do
+        post '/convert', {"before" => "あ",
+                          "charset" => "CP930",
+                          "way" => "0"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='0e44810f'/
+      end
     end
 
     context "hex bytes to char" do

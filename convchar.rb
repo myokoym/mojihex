@@ -45,6 +45,9 @@ def char2hex(char, charset)
   char.encode(charset).bytes.map {|byte|
     "%02x" % byte
   }.join
+rescue Encoding::ConverterNotFoundError
+  require 'iconv'
+  Iconv.conv(charset, "UTF-8", char).unpack("H*")
 end
 
 def hex2str(hex, charset="UTF-8")
