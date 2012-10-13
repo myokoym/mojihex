@@ -74,6 +74,14 @@ describe "Convchar" do
         last_response.body.to_s.should =~ /value='あ'/
       end
 
+      it "remove space between bytes" do
+        post '/convert', {"before" => "e38182 e38184 e38186",
+                          "charset" => "UTF-8",
+                          "way" => "1"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='あいう'/
+      end
+
       it "encoding UTF-8" do
         post '/convert', {"before" => "e38182",
                           "charset" => "UTF-8",
