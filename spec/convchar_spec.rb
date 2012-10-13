@@ -63,6 +63,14 @@ describe "Convchar" do
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='0e44810f'/
       end
+
+      it "encoding UTF-16BE" do
+        post '/convert', {"before" => "あ",
+                          "charset" => "UTF-16BE",
+                          "way" => "0"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='3042'/
+      end
     end
 
     context "hex bytes to char" do
@@ -117,6 +125,14 @@ describe "Convchar" do
       it "encoding CP930" do
         post '/convert', {"before" => "0e44810f",
                           "charset" => "CP930",
+                          "way" => "1"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='あ'/
+      end
+
+      it "encoding UTF-16BE" do
+        post '/convert', {"before" => "3042",
+                          "charset" => "UTF-16BE",
                           "way" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
