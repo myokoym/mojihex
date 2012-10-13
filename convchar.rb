@@ -53,6 +53,9 @@ def hex2str(hex, charset="UTF-8")
   else
     Encoding::Converter.new(charset, "UTF-8").convert(hex2bytes(hex))
   end
+rescue EncodingError
+  require 'iconv'
+  Iconv.conv("UTF-8", charset, hex2bytes(hex))
 end
 
 def hex2bytes(hex)
