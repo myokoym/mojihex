@@ -10,7 +10,15 @@ http://myokoym.net/convchar/
 
 ### Run Test
 
-    $ ruby test/convchar_test.rb
+    $ rspec spec
+
+or
+
+    $ rake spec
+
+or
+
+    $ rake
 
 ## Contributing
 
