@@ -32,6 +32,16 @@ describe "Convchar" do
         last_response.body.to_s.should =~ /value='e38182'/
       end
     end
+
+    context "hex bytes to char" do
+      it "encoding UTF-8" do
+        post '/convert', {"before" => "e38182",
+                          "charset" => "UTF-8",
+                          "way" => "1"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='あ'/
+      end
+    end
   end
 end
 
