@@ -1,11 +1,11 @@
 require 'rspec'
 require 'rack/test'
 
-OUTER_APP = Rack::Builder.parse_file('config.ru').first
+MY_APP = Rack::Builder.parse_file('config.ru').first
 
 include Rack::Test::Methods
 def app
-  OUTER_APP
+  MY_APP
 end
 
 describe "Convchar" do
