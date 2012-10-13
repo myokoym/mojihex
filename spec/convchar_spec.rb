@@ -27,7 +27,7 @@ describe "Convchar" do
       it "encoding UTF-8" do
         post '/convert', {"before" => "あ",
                           "charset" => "UTF-8",
-                          "way" => "0"} 
+                          "way" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /e38182/
       end
