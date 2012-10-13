@@ -43,7 +43,7 @@ end
 
 def char2hex(char, charset)
   char.encode(charset).bytes.map {|byte|
-    byte.to_s(16)
+    "%02x" % byte
   }.join
 end
 
