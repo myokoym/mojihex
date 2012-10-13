@@ -31,12 +31,28 @@ describe "Convchar" do
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='e38182'/
       end
+
+      it "encoding Shift_JIS" do
+        post '/convert', {"before" => "あ",
+                          "charset" => "Shift_JIS",
+                          "way" => "0"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='82a0'/
+      end
     end
 
     context "hex bytes to char" do
       it "encoding UTF-8" do
         post '/convert', {"before" => "e38182",
                           "charset" => "UTF-8",
+                          "way" => "1"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='あ'/
+      end
+
+      it "encoding Shift_JIS" do
+        post '/convert', {"before" => "82a0",
+                          "charset" => "Shift_JIS",
                           "way" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
