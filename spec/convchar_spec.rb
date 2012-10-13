@@ -24,6 +24,14 @@ describe "Convchar" do
     end
 
     context "char to hex bytes" do
+      it "insert space while char" do
+        post '/convert', {"before" => "あいう",
+                          "charset" => "UTF-8",
+                          "way" => "0"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='e38182 e38184 e38186'/
+      end
+
       it "encoding UTF-8" do
         post '/convert', {"before" => "あ",
                           "charset" => "UTF-8",
