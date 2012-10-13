@@ -6,6 +6,12 @@ Charset Converter
 
 http://myokoym.net/convchar/
 
+## Development
+
+### Run Test
+
+    $ ruby test/convchar_test.rb
+
 ## Contributing
 
 1. Fork it
