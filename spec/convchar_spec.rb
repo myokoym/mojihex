@@ -39,6 +39,14 @@ describe "Convchar" do
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='82a0'/
       end
+
+      it "encoding EUC-JP" do
+        post '/convert', {"before" => "あ",
+                          "charset" => "EUC-JP",
+                          "way" => "0"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='a4a2'/
+      end
     end
 
     context "hex bytes to char" do
@@ -53,6 +61,14 @@ describe "Convchar" do
       it "encoding Shift_JIS" do
         post '/convert', {"before" => "82a0",
                           "charset" => "Shift_JIS",
+                          "way" => "1"}
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /value='あ'/
+      end
+
+      it "encoding EUC-JP" do
+        post '/convert', {"before" => "a4a2",
+                          "charset" => "EUC-JP",
                           "way" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
