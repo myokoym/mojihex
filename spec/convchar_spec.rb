@@ -9,14 +9,18 @@ def app
 end
 
 describe "Convchar" do
-  it "test_root" do
-    get '/'
-    last_response.ok? == true
+  context "root" do
+    it "test_root" do
+      get '/'
+      last_response.ok? == true
+    end
   end
 
-  it "test_post" do
-    post '/convert'
-    last_response.ok? == true
+  context "convert" do
+    it "test_post" do
+      post '/convert'
+      last_response.ok? == true
+    end
   end
 end
 
