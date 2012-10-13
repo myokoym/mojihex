@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'rspec'
 require 'rack/test'
 
@@ -20,6 +21,16 @@ describe "Convchar" do
     it "last response ok?" do
       post '/convert'
       last_response.ok? == true
+    end
+
+    context "char to hex bytes" do
+      it "encoding UTF-8" do
+        post '/convert', {"before" => "あ",
+                          "charset" => "UTF-8",
+                          "way" => "0"} 
+        last_response.ok? == true
+        last_response.body.to_s.should =~ /e38182/
+      end
     end
   end
 end
