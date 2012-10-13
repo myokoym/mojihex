@@ -20,7 +20,7 @@
     %form{:action => url("/convert", false, true), :method => "post"}
       %p
         %select{:name => "charset"}
-          - ['UTF-8', 'Shift_JIS', 'EUC-JP'].each do |v|
+          - ['UTF-8', 'Shift_JIS', 'EUC-JP', 'CP930', 'UTF-16BE'].each do |v|
             %option{:value => v}= v
         %select{:name => "way"}
           - ['char -> byte', 'byte -> char'].each_with_index do |v, i|
