@@ -10,14 +10,14 @@ end
 
 describe "Convchar" do
   context "root" do
-    it "test_root" do
+    it "last response ok?" do
       get '/'
       last_response.ok? == true
     end
   end
 
   context "convert" do
-    it "test_post" do
+    it "last response ok?" do
       post '/convert'
       last_response.ok? == true
     end
