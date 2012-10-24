@@ -10,6 +10,7 @@ end
 post "/convert" do
   begin
     @after = convert(params)
+    @http_get_url = http_get_url
     haml :index
   rescue
     ["だめです？",
@@ -25,6 +26,7 @@ end
 get "/convert" do
   begin
     @after = convert(params)
+    @http_get_url = http_get_url
     haml :index
   rescue
     ["だめです？",
@@ -74,4 +76,8 @@ end
 
 def hex2bytes(hex)
   [hex.gsub(/\s+/, '')].pack("H*")
+end
+
+def http_get_url
+  "#{url}?#{URI.encode_www_form(params)}"
 end
