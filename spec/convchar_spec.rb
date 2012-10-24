@@ -140,14 +140,14 @@ describe "Convchar" do
     end
   end
 
-  context "api" do
+  context "HTTP GET" do
     context "char to hex bytes" do
       it "encoding UTF-8" do
         get '/convert', {"before" => "あ",
                           "charset" => "UTF-8",
                           "way" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /\Ae38182\z/
+        last_response.body.to_s.should =~ /value='e38182'/
       end
     end
 
@@ -157,7 +157,7 @@ describe "Convchar" do
                           "charset" => "UTF-8",
                           "way" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /\Aあ\z/
+        last_response.body.to_s.should =~ /value='あ'/
       end
     end
   end

@@ -23,7 +23,18 @@ post "/convert" do
 end
 
 get "/convert" do
-  convert(params)
+  begin
+    @after = convert(params)
+    haml :index
+  rescue
+    ["だめです？",
+     "おちるです？",
+     "しんじゃうです？",
+     "ふせいです？",
+     "へんです？",
+     "おかしいです？",
+     "さよならです？"].sample
+  end
 end
 
 private
