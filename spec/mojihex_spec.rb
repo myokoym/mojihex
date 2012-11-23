@@ -9,7 +9,7 @@ def app
   MY_APP
 end
 
-describe "Convchar" do
+describe "MojiHex" do
   context "root" do
     it "last response ok?" do
       get '/'

@@ -1,10 +1,10 @@
-# 昆布茶 [![Build Status](https://secure.travis-ci.org/myokoym/convchar.png?branch=master)](http://travis-ci.org/myokoym/convchar)
+# MOJIHEX [![Build Status](https://secure.travis-ci.org/myokoym/mojihex.png?branch=master)](http://travis-ci.org/myokoym/mojihex)
 
-Charset Converter
+The Converter of Character and Hex
 
 ## Usage
 
-http://myokoym.net/convchar/
+http://myokoym.net/mojihex/
 
 ## Development
 
