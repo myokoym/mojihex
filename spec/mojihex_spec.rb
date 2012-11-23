@@ -137,6 +137,14 @@ describe "MojiHex" do
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
+
+      it "invalid byte sequence in UTF-8" do
+        post '/convert', {"before" => "82a0",
+                          "charset" => "UTF-8",
+                          "way" => "1"}
+        last_response.ok? == false
+        last_response.body.to_s.should =~ /Error: invalid byte sequence in UTF-8/
+      end
     end
   end
 
@@ -148,6 +156,14 @@ describe "MojiHex" do
                           "way" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='e38182'/
+      end
+
+      it "invalid byte sequence in UTF-8" do
+        get '/convert', {"before" => "82a0",
+                          "charset" => "UTF-8",
+                          "way" => "1"}
+        last_response.ok? == false
+        last_response.body.to_s.should =~ /Error: invalid byte sequence in UTF-8/
       end
     end
 

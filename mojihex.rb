@@ -12,14 +12,8 @@ post "/convert" do
     @after = convert(params)
     @http_get_url = http_get_url
     haml :index
-  rescue
-    ["だめです？",
-     "おちるです？",
-     "しんじゃうです？",
-     "ふせいです？",
-     "へんです？",
-     "おかしいです？",
-     "さよならです？"].sample
+  rescue => e
+    "Error: #{e}"
   end
 end
 
@@ -28,14 +22,8 @@ get "/convert" do
     @after = convert(params)
     @http_get_url = http_get_url
     haml :index
-  rescue
-    ["だめです？",
-     "おちるです？",
-     "しんじゃうです？",
-     "ふせいです？",
-     "へんです？",
-     "おかしいです？",
-     "さよならです？"].sample
+  rescue => e
+    "Error: #{e}"
   end
 end
 
