@@ -71,6 +71,14 @@ describe "MojiHex" do
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='3042'/
       end
+
+      it "invalid encoding" do
+        post '/convert', {"before" => "あ",
+                          "charset" => "UTF-9",
+                          "way" => "0"}
+        last_response.ok? == false
+        last_response.body.to_s.should =~ /Error: invalid encoding/
+      end
     end
 
     context "hex bytes to char" do
@@ -145,6 +153,14 @@ describe "MojiHex" do
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid byte sequence in UTF-8/
       end
+
+      it "invalid encoding" do
+        post '/convert', {"before" => "e38182",
+                          "charset" => "UTF-9",
+                          "way" => "1"}
+        last_response.ok? == false
+        last_response.body.to_s.should =~ /Error: invalid encoding/
+      end
     end
   end
 
@@ -164,6 +180,14 @@ describe "MojiHex" do
                           "way" => "1"}
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid byte sequence in UTF-8/
+      end
+
+      it "invalid encoding" do
+        post '/convert', {"before" => "e38182",
+                          "charset" => "UTF-9",
+                          "way" => "1"}
+        last_response.ok? == false
+        last_response.body.to_s.should =~ /Error: invalid encoding/
       end
     end
 
