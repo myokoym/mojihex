@@ -29,7 +29,7 @@ end
 
 private
 def convert(params)
-  if params[:way] == "0"
+  if params[:mode] == "0"
     str2hex(params[:before], params[:charset])
   else
     hex2str(params[:before], params[:charset])

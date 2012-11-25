@@ -27,7 +27,7 @@ describe "MojiHex" do
       it "insert space while char" do
         post '/convert', {"before" => "あいう",
                           "charset" => "UTF-8",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='e38182 e38184 e38186'/
       end
@@ -35,7 +35,7 @@ describe "MojiHex" do
       it "encoding UTF-8" do
         post '/convert', {"before" => "あ",
                           "charset" => "UTF-8",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='e38182'/
       end
@@ -43,7 +43,7 @@ describe "MojiHex" do
       it "encoding Shift_JIS" do
         post '/convert', {"before" => "あ",
                           "charset" => "Shift_JIS",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='82a0'/
       end
@@ -51,7 +51,7 @@ describe "MojiHex" do
       it "encoding EUC-JP" do
         post '/convert', {"before" => "あ",
                           "charset" => "EUC-JP",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='a4a2'/
       end
@@ -59,7 +59,7 @@ describe "MojiHex" do
       it "encoding CP930" do
         post '/convert', {"before" => "あ",
                           "charset" => "CP930",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='0e44810f'/
       end
@@ -67,7 +67,7 @@ describe "MojiHex" do
       it "encoding UTF-16BE" do
         post '/convert', {"before" => "あ",
                           "charset" => "UTF-16BE",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='3042'/
       end
@@ -75,7 +75,7 @@ describe "MojiHex" do
       it "invalid encoding" do
         post '/convert', {"before" => "あ",
                           "charset" => "UTF-9",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid encoding/
       end
@@ -85,7 +85,7 @@ describe "MojiHex" do
       it "upper case" do
         post '/convert', {"before" => "E38182",
                           "charset" => "UTF-8",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
@@ -93,7 +93,7 @@ describe "MojiHex" do
       it "lower case" do
         post '/convert', {"before" => "e38182",
                           "charset" => "UTF-8",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
@@ -101,7 +101,7 @@ describe "MojiHex" do
       it "remove space between bytes" do
         post '/convert', {"before" => "e38182 e38184 e38186",
                           "charset" => "UTF-8",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あいう'/
       end
@@ -109,7 +109,7 @@ describe "MojiHex" do
       it "encoding UTF-8" do
         post '/convert', {"before" => "e38182",
                           "charset" => "UTF-8",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
@@ -117,7 +117,7 @@ describe "MojiHex" do
       it "encoding Shift_JIS" do
         post '/convert', {"before" => "82a0",
                           "charset" => "Shift_JIS",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
@@ -125,7 +125,7 @@ describe "MojiHex" do
       it "encoding EUC-JP" do
         post '/convert', {"before" => "a4a2",
                           "charset" => "EUC-JP",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
@@ -133,7 +133,7 @@ describe "MojiHex" do
       it "encoding CP930" do
         post '/convert', {"before" => "0e44810f",
                           "charset" => "CP930",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
@@ -141,7 +141,7 @@ describe "MojiHex" do
       it "encoding UTF-16BE" do
         post '/convert', {"before" => "3042",
                           "charset" => "UTF-16BE",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end
@@ -149,7 +149,7 @@ describe "MojiHex" do
       it "invalid byte sequence in UTF-8" do
         post '/convert', {"before" => "82a0",
                           "charset" => "UTF-8",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid byte sequence in UTF-8/
       end
@@ -157,7 +157,7 @@ describe "MojiHex" do
       it "invalid encoding" do
         post '/convert', {"before" => "e38182",
                           "charset" => "UTF-9",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid encoding/
       end
@@ -169,7 +169,7 @@ describe "MojiHex" do
       it "encoding UTF-8" do
         get '/convert', {"before" => "あ",
                           "charset" => "UTF-8",
-                          "way" => "0"}
+                          "mode" => "0"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='e38182'/
       end
@@ -177,7 +177,7 @@ describe "MojiHex" do
       it "invalid byte sequence in UTF-8" do
         get '/convert', {"before" => "82a0",
                           "charset" => "UTF-8",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid byte sequence in UTF-8/
       end
@@ -185,7 +185,7 @@ describe "MojiHex" do
       it "invalid encoding" do
         post '/convert', {"before" => "e38182",
                           "charset" => "UTF-9",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid encoding/
       end
@@ -195,7 +195,7 @@ describe "MojiHex" do
       it "encoding UTF-8" do
         get '/convert', {"before" => "e38182",
                           "charset" => "UTF-8",
-                          "way" => "1"}
+                          "mode" => "1"}
         last_response.ok? == true
         last_response.body.to_s.should =~ /value='あ'/
       end

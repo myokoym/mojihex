@@ -27,7 +27,7 @@
         %select{:name => "charset"}
           - ['UTF-8', 'Shift_JIS', 'EUC-JP', 'CP930', 'UTF-16BE'].each do |v|
             %option{:value => v}= v
-        %select{:name => "way"}
+        %select{:name => "mode"}
           - ['char -> byte', 'byte -> char'].each_with_index do |v, i|
             %option{:value => i}= v
       %p
