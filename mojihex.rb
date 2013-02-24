@@ -7,7 +7,7 @@ get "/" do
   haml :index
 end
 
-post "/convert" do
+convert = lambda do
   begin
     @after = convert(params)
     @http_get_url = http_get_url
@@ -16,16 +16,8 @@ post "/convert" do
     "Error: #{e}"
   end
 end
-
-get "/convert" do
-  begin
-    @after = convert(params)
-    @http_get_url = http_get_url
-    haml :index
-  rescue => e
-    "Error: #{e}"
-  end
-end
+get "/convert", &convert
+post "/convert", &convert
 
 private
 def convert(params)
