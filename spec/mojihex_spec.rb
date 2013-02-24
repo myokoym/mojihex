@@ -169,6 +169,9 @@ describe "MojiHex" do
         last_response.ok? == false
         last_response.body.to_s.should =~ /selected.*>Shift_JIS</
         last_response.body.to_s.should =~ /selected.*>byte -> char</
+        name = "name=[\'\"]before[\'\"]"
+        value = "value=[\'\"]82a0[\'\"]"
+        last_response.body.to_s.should =~ /#{name}.*#{value}|#{value}.*#{name}/
       end
     end
   end

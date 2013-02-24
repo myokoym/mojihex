@@ -35,9 +35,11 @@
             - hash[:selected] = "selected" if i.to_s == @params[:mode]
             %option{hash}= v
       %p
-        %input{:type => "textarea", :name => "before", :value => "#{@after}", :size => 40}
+        %input{:type => "textarea", :name => "before", :value => "#{@params[:before]}", :size => 40}
       %p
         %input{:type => "submit"}
+    %p
+      %input{:type => "textarea", :name => "after", :value => "#{@after}", :size => 40}
     %p
       HTTP GET URL
       %br
