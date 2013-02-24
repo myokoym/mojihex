@@ -161,6 +161,15 @@ describe "MojiHex" do
         last_response.ok? == false
         last_response.body.to_s.should =~ /Error: invalid encoding/
       end
+
+      it "save params" do
+        post '/convert', {"before" => "82a0",
+                          "charset" => "Shift_JIS",
+                          "mode" => "1"}
+        last_response.ok? == false
+        last_response.body.to_s.should =~ /selected.*>Shift_JIS</
+        last_response.body.to_s.should =~ /selected.*>byte -> char</
+      end
     end
   end
 

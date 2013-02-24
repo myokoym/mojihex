@@ -11,6 +11,7 @@ convert = lambda do
   begin
     @after = convert(params)
     @http_get_url = http_get_url
+    @params = params
     haml :index
   rescue => e
     "Error: #{e}"

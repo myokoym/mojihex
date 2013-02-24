@@ -26,10 +26,14 @@
       %p
         %select{:name => "charset"}
           - ['UTF-8', 'Shift_JIS', 'EUC-JP', 'CP930', 'UTF-16BE'].each do |v|
-            %option{:value => v}= v
+            - hash = {:value => v}
+            - hash[:selected] = "selected" if v == @params[:charset]
+            %option{hash}= v
         %select{:name => "mode"}
           - ['char -> byte', 'byte -> char'].each_with_index do |v, i|
-            %option{:value => i}= v
+            - hash = {:value => i}
+            - hash[:selected] = "selected" if i.to_s == @params[:mode]
+            %option{hash}= v
       %p
         %input{:type => "textarea", :name => "before", :value => "#{@after}", :size => 40}
       %p
