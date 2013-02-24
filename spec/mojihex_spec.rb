@@ -29,7 +29,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='e38182 e38184 e38186'/
+        last_response.body.to_s.should =~ /after.*>e38182 e38184 e38186</
       end
 
       it "encoding UTF-8" do
@@ -37,7 +37,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='e38182'/
+        last_response.body.to_s.should =~ /after.*>e38182</
       end
 
       it "encoding Shift_JIS" do
@@ -45,7 +45,7 @@ describe "MojiHex" do
                           "charset" => "Shift_JIS",
                           "mode" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='82a0'/
+        last_response.body.to_s.should =~ /after.*>82a0</
       end
 
       it "encoding EUC-JP" do
@@ -53,7 +53,7 @@ describe "MojiHex" do
                           "charset" => "EUC-JP",
                           "mode" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='a4a2'/
+        last_response.body.to_s.should =~ /after.*>a4a2</
       end
 
       it "encoding CP930" do
@@ -61,7 +61,7 @@ describe "MojiHex" do
                           "charset" => "CP930",
                           "mode" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='0e44810f'/
+        last_response.body.to_s.should =~ /after.*>0e44810f</
       end
 
       it "encoding UTF-16BE" do
@@ -69,7 +69,7 @@ describe "MojiHex" do
                           "charset" => "UTF-16BE",
                           "mode" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='3042'/
+        last_response.body.to_s.should =~ /after.*>3042</
       end
 
       it "invalid encoding" do
@@ -87,7 +87,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
 
       it "lower case" do
@@ -95,7 +95,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
 
       it "remove space between bytes" do
@@ -103,7 +103,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あいう'/
+        last_response.body.to_s.should =~ /after.*>あいう</
       end
 
       it "encoding UTF-8" do
@@ -111,7 +111,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
 
       it "encoding Shift_JIS" do
@@ -119,7 +119,7 @@ describe "MojiHex" do
                           "charset" => "Shift_JIS",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
 
       it "encoding EUC-JP" do
@@ -127,7 +127,7 @@ describe "MojiHex" do
                           "charset" => "EUC-JP",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
 
       it "encoding CP930" do
@@ -135,7 +135,7 @@ describe "MojiHex" do
                           "charset" => "CP930",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
 
       it "encoding UTF-16BE" do
@@ -143,7 +143,7 @@ describe "MojiHex" do
                           "charset" => "UTF-16BE",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
 
       it "invalid byte sequence in UTF-8" do
@@ -169,9 +169,7 @@ describe "MojiHex" do
         last_response.ok? == false
         last_response.body.to_s.should =~ /selected.*>Shift_JIS</
         last_response.body.to_s.should =~ /selected.*>byte -> char</
-        name = "name=[\'\"]before[\'\"]"
-        value = "value=[\'\"]82a0[\'\"]"
-        last_response.body.to_s.should =~ /#{name}.*#{value}|#{value}.*#{name}/
+        last_response.body.to_s.should =~ /before.*>82a0</
       end
     end
   end
@@ -183,7 +181,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "0"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='e38182'/
+        last_response.body.to_s.should =~ /after.*>e38182</
       end
 
       it "invalid byte sequence in UTF-8" do
@@ -209,7 +207,7 @@ describe "MojiHex" do
                           "charset" => "UTF-8",
                           "mode" => "1"}
         last_response.ok? == true
-        last_response.body.to_s.should =~ /value='あ'/
+        last_response.body.to_s.should =~ /after.*>あ</
       end
     end
   end
