@@ -1,0 +1,24 @@
+body {
+  color: #222222;
+
+  /* polka-dot pattern */
+  background: -moz-radial-gradient(
+    circle farthest-side,
+    #DDDDDD,
+    #DDDDDD 50%,
+    #EEEEEE 50%,
+    #EEEEEE
+  );
+  background: -webkit-gradient(
+    radial,
+    50% 50%, 0,
+    50% 50%, 9,
+    from(#DDDDDD),
+    color-stop(50%, #DDDDDD),
+    color-stop(50%, #EEEEEE),
+    to(#EEEEEE)
+  );
+  -moz-background-size: 15px 15px;
+  -webkit-background-size: 15px 15px;
+  background-size: 15px 15px;
+}
