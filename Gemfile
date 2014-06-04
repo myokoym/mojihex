@@ -6,6 +6,6 @@ gem 'iconv'
 
 group :development, :test do
   gem 'rake'
-  gem 'rspec'
+  gem 'rspec', '~> 2'
   gem 'rack-test'
 end
