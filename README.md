@@ -10,15 +10,7 @@ http://myokoym.net/mojihex/
 
 ### Run Test
 
-    $ rspec spec
-
-or
-
-    $ rake spec
-
-or
-
-    $ rake
+    $ bundle exec rake
 
 ## Contributing
 
